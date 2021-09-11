@@ -1,0 +1,192 @@
+{% extends 'homepage/base.html' %}
+{% block title %}CRUELTOUCH | Homepage{% endblock %}
+{% block login %}<li><a href="{% url 'client:logout' %}">Logout</a></li>{% endblock %}
+    <head>
+            <style>
+{% comment %}
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    margin: -1rem -1rem;
+    padding-bottom: 3rem;
+}
+
+.gallery-item {
+    position: relative;
+    flex: 1 0 22rem;
+    margin: 1rem;
+    color: #fff;
+    cursor: pointer;
+}
+
+.gallery-item:hover .gallery-item-info,
+.gallery-item:focus .gallery-item-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.gallery-item-info {
+    display: none;
+}
+
+.gallery-item-info li {
+    display: inline-block;
+    font-size: 1.7rem;
+    font-weight: 600;
+}
+
+.gallery-item-likes {
+    margin-right: 2.2rem;
+}
+
+.gallery-item-type {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 2.5rem;
+    text-shadow: 0.2rem 0.2rem 0.2rem rgba(0, 0, 0, 0.1);
+}
+
+.fa-clone,
+.fa-comment {
+    transform: rotateY(180deg);
+}
+
+.gallery-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Loader */
+
+.loader {
+    width: 5rem;
+    height: 5rem;
+    border: 0.6rem solid #999;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    margin: 0 auto;
+    animation: loader 500ms linear infinite;
+}
+
+
+/* Spinner Animation */
+
+@keyframes loader {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+@supports (display: grid) {
+
+    .gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr));
+        grid-gap: 2rem;
+    }
+
+    .gallery-item,
+    .gallery {
+        width: auto;
+        margin: 0;
+    }
+}
+
+{% endcomment %}
+
+</style>
+    </head>
+
+{% block body %}
+    <body>
+
+        {% csrf_token %}
+        {% if all_photos %}
+    {% for photo in all_photos %}
+    {% comment %}
+            <div class="gallery-all">
+
+                    <div class="gallery" data-setbg="/media/Client/{{ photo.name }}">
+                        <a target="_top" href="/media/Client/{{ photo.name }}">
+                            <img src="/media/Client/{{ photo.name }}" width="600" height="400">
+                        </a>
+                    </div>{% endcomment %}
+                    <div class="container">
+
+		<div class="gallery">
+
+			<div class="gallery-item" tabindex="0">
+
+				<img src="/media/Client/{{ photo.name }}" class="gallery-image" alt="">
+
+				<div class="gallery-item-info">
+
+					<ul>
+						<li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 56</li>
+						<li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 2</li>
+					</ul>
+
+				</div>
+
+			</div>
+                {% endfor %}
+                {% else %}
+                    <h3 class="alert">You don't have any photos</h3>
+                {% endif %}
+            </div>
+
+    </body>
+{% endblock body %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Gallery */
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    margin: -1rem -1rem;
+    padding-bottom: 3rem;
+}
+
+.gallery-item {
+    position: relative;
+    flex: 1 0 22rem;
+    margin: 1rem;
+    color: #fff;
+    cursor: pointer;
+}
+.gallery-item:hover .gallery-item-info,
+.gallery-item:focus .gallery-item-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+h3.alert{
+    font-size: 50px !important;
+    text-align: center;
+}

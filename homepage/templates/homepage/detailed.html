@@ -1,0 +1,20 @@
+{% extends 'homepage/base.html' %}
+{% block title %}CRUELTOUCH | Details{% endblock %}
+
+{% block body %}
+    <body>
+
+    <div class="row">
+        <div class="column">
+             <div class="detailed-img">
+                 <img src="/media/Homepage/{{ photo.name }}">
+             </div>
+        </div>
+        <div class="column">
+            <h1 class="photo-album">{{ photo.album }}</h1>
+            <h3>{{ photo.caption }}</h3>
+        </div>
+    </div>
+
+    </body>
+{% endblock body %}
